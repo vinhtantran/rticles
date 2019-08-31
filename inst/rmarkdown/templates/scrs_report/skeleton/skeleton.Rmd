@@ -1,0 +1,104 @@
+---
+title: Most Important Study
+
+author: R.A. Fisher
+client: Client Name
+director: Director Name
+secondary: Secondary Statistician
+titlepage: true
+msucolor: true
+prelim: true
+twoside: true
+spacing: 1
+bibliography: scrs-ref
+biblio-style: apalike
+output: rticles::scrs_report
+---
+
+```{r load_pkgs, echo = FALSE}
+## Set CRAN mirror
+r <- getOption("repos")
+r["CRAN"] <- "http://cran.us.r-project.org"
+options(repos = r)
+rm(r)
+
+# Helper function to install a package if not installed and load
+use_package <- function(p) 
+{
+if (!is.element(p, installed.packages()[,1]))
+  install.packages(p, dep = TRUE)
+library(p, character.only = TRUE)
+}
+
+# Base R packages: (no need to check if installed)
+# library(MASS)
+
+## Non-base packages
+# usePackage('lme4')
+# usePackage('devtools') # This can take a while
+# use_package('xtable')
+# usePackage('pander')
+# usePackage('knitr')
+# options(xtable.comment = FALSE)
+
+## Non-maintained packages
+## printr
+# if (!is.element('printr', installed.packages()[,1]))
+# install_github("yihui/printr")
+# library(printr)
+```
+
+# The Body of the Article
+
+## Mathematics
+
+Here is an equation:
+
+$$ f_{X}(x) = \left(\frac{\alpha}{\beta}\right)\left(\frac{x}{\beta}\right)^{\alpha-1}e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; \alpha,\beta,x > 0 $$
+
+Here is another:
+\begin{align}
+a^2+b^2=c^2
+\end{align}
+
+Inline equations: $\sum_{i = 2}^\infty\{\alpha_i^\beta\}$
+
+## Figures and Tables
+
+Figures are supported from R code:
+
+```{r plot-ref, fig.cap = "Fancy Caption\\label{fig:plot}", out.width='100%'}
+x = rnorm(10)
+y = rnorm(10)
+plot(x, y)
+```
+
+...and can be referenced (Figure \ref{fig:plot}) by including the `\\label{}` tag in the `fig.cap` attribute of the R chunk: `fig.cap = "Fancy Caption\\label{fig:plot}"`. It is a quirky hack at the moment, see [here](https://github.com/yihui/knitr/issues/323).
+
+Analogously, use Rmarkdown to produce tables as usual. It is possible to set the `YAML` option `longtable: true` and use markdown tables (or the `knitr::kable` function): `knitr::kable(head(cars))` produces
+
+```{r table}
+knitr::kable(head(cars), 
+             caption = "A table", label = "tab:table")
+```
+
+## Cross-referencing
+
+The use of the Rmarkdown equivalent of the \LaTeX cross-reference system
+for figures, tables, equations, etc., is encouraged (using `[@<name>]`, equivalent of `\ref{<name>}` and `\label{<name>}`). That works well for citations in Rmarkdown, not so well for figures and tables. In that case, it is possible to revert to standard \LaTeX syntax.
+
+## Double Spacing
+
+If you need to double space your document for submission please use the `doublespace` option in the header.
+
+# Bibliography
+
+Link a `.bib` document via the YAML header, and bibliography will be printed at the very end (as usual). The default bibliography style is provided by Wiley as in `WileyNJD-AMA.bst`, do not delete that file.
+
+Use the Rmarkdown equivalent of the \LaTeX citation system using `[@<name>]`. Example: [@R], [@Ramsey2012; @Gelman2006].
+
+To include all citation from the `.bib` file, add `\nocite{*}` before the end of the document.
+
+# Further information
+
+All \LaTeX enviroments supported by the main template are supported here as well; see the `.tex` sample file [here](http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1097-0258/homepage/la_tex_class_file.htm) for more details and example.

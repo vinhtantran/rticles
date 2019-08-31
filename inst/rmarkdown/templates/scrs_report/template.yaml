@@ -1,0 +1,5 @@
+name: MSU SCRS Statistical Report
+description: >
+ Template for creating a statistical report in PDF format
+create_dir: true
+

@@ -18,6 +18,7 @@
 \alias{plos_article}
 \alias{pnas_article}
 \alias{sage_article}
+\alias{scrs_report}
 \alias{sim_article}
 \alias{springer_article}
 \alias{tf_article}
@@ -64,6 +65,8 @@ plos_article(..., keep_tex = TRUE,
 pnas_article(..., keep_tex = TRUE)
 
 sage_article(..., highlight = NULL, citation_package = "natbib")
+
+scrs_report(..., keep_tex = TRUE, citation_package = "natbib")
 
 sim_article(..., highlight = NULL, citation_package = "natbib")
 
@@ -198,6 +201,22 @@ Possible arguments for the YAML header are:
   \item \code{classoption} options of the \code{sagej} class
  \item \code{header-includes}: custom additions to the header, before the \code{\\begin\{document\}} statement
  \item \code{include-after}: for including additional LaTeX code before the \code{\\end\{document\}} statement}
+}
+
+\section{\code{scrs_report}}{
+ Format for creating MSU SCRS statistical report.
+  Based on the markdown and LaTeX templates of SCRS
+  \href{https://montana.app.box.com/folder/49004143798}{local link}.
+
+Possible arguments for the YAML header are:
+\itemize{
+  \item \code{title} title of the report
+  \item \code{author} primary statistician's name
+  \item \code{client} client's name
+  \item \code{director} director's name
+  \item \code{secondary} secondary statistician's name
+  \item \code{prelim} whether this is a draft (true) or final report (false)
+  \item \code{bibliography} BibTeX \code{.bib} file name}
 }
 
 \section{\code{sim_article}}{

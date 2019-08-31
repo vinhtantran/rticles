@@ -224,6 +224,27 @@ sage_article <- function(..., highlight = NULL, citation_package = "natbib") {
   )
 }
 
+#' @section \code{scrs_report}: Format for creating MSU SCRS statistical report.
+#'   Based on the markdown and LaTeX templates of SCRS
+#'   \href{https://montana.app.box.com/folder/49004143798}{local link}.
+#'
+#' Possible arguments for the YAML header are:
+#' \itemize{
+#'   \item \code{title} title of the report
+#'   \item \code{author} primary statistician's name
+#'   \item \code{client} client's name
+#'   \item \code{director} director's name
+#'   \item \code{secondary} secondary statistician's name
+#'   \item \code{prelim} whether this is a draft (true) or final report (false)
+#'   \item \code{bibliography} BibTeX \code{.bib} file name}
+#' @export
+#' @rdname article
+scrs_report <- function(..., keep_tex = TRUE, citation_package = "natbib") {
+  pdf_document_format(
+    "scrs_report", keep_tex = keep_tex, citation_package = citation_package, ...
+  )
+}
+
 #' @section \code{sim_article}: Format for creating submissions to Statistics in
 #'   Medicine. Based on the official Statistics in Medicine
 #'   \href{http://onlinelibrary.wiley.com/journal/10.1002/(ISSN)1097-0258/homepage/la_tex_class_file.htm}{class}.
